@@ -1,0 +1,4 @@
+kubectl scale sts myapp --replicas=5
+kubectl patch sts myapp -p '{spec:{replicas:5}}'
+kubectl patch sts myapp -p '{spec:{updateStrategy:{rollingUpdate:{partition:2}}}}'
+kubectl get pods myapp-2 -o yaml
