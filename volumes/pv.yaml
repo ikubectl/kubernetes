@@ -10,7 +10,7 @@ spec:
     server: master
   accessModes: ["ReadWriteMany","ReadWriteOnce"]
   capacity:
-    storage: 2Gi
+    storage: 5Gi
 ---
 apiVersion: v1
 kind: PersistentVolume
@@ -38,7 +38,7 @@ spec:
     server: master
   accessModes: ["ReadWriteMany","ReadWriteOnce"]
   capacity:
-    storage: 15Gi
+    storage: 5Gi
 ---
 apiVersion: v1
 kind: PersistentVolume
@@ -66,4 +66,4 @@ spec:
     server: master
   accessModes: ["ReadWriteMany","ReadWriteOnce"]
   capacity:
-    storage: 3Gi
+    storage: 5Gi
