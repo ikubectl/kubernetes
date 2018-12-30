@@ -1,0 +1,20 @@
+only iptables mode
+1 calico requests apiserver *
+2 caloco myself etcd
+curl https://docs.projectcalico.org/v3.4/getting-started/kubernetes/installation/hosted/canal/canal.yaml  -O
+
+pod -----------------egress----------< to ports
+pod------------------ingress----------form ports
+kubectl explain networkpolicy
+policyType: egress,Ingress
+
+
+ingress:
+- from:
+	- ipBlock:
+			cidr: 10.244.0.0/16
+			except:
+			- 10.244.1.2/32
+	ports:
+	- protocol: TCP
+		port: 80
