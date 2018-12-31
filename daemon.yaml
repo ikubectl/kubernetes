@@ -1,0 +1,14 @@
+apiVersion: v1
+kind: Pod
+metadata: 
+  name: pod-daemon
+  namespace: default
+  labels:
+    app: myapp
+    tier: fronted
+spec:
+  containers:
+  - name: mypp
+    image: ikubernetes/myapp:v1
+  nodeSelector:
+    gpu: ssd

@@ -1,0 +1,7 @@
+NoSchedule: only effect schedule
+NoExecute: schedule and exists
+PreferNoSchedule:  
+
+
+kubectl taint node node2 node-type=dev:NoExecute
+

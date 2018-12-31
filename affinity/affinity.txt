@@ -1,0 +1,34 @@
+podAffinity
+nodeAffinity
+
+predicate.go
+	CheckNodeConditon
+	GeneralPredicates
+		Hostname
+		PodFitHostPorts
+		MatchNodeSelector
+		PodFitsResources
+	NoDiskConfict: default no using
+	PodTolerateNodeTaints
+	PodToleratesNodeNoExecuteTaints: 
+	CheckNodeLabelPresent
+	CheckServiceAffinity
+	CheckNodeMemoryPressure
+	CheckNodePIDPressure
+
+	LeastRequested:
+		cpu=(capacity-sum(requested)*10/capacity)+memory(capacity-sum(requested)*10/capacity)
+	BalanceResourceAllocation:
+
+	NodePreferAvoidPods:"scheduler.alpha.kubernetes.io/preferAvoidPods"
+	TaintsToleration: pod.spec.tolerations list ---> as many as low taints
+	SelectorSpreading: 
+
+nodeSelector:
+nodeAffinity:
+
+
+kubectl explain pod.spec.affinity.nodeAffinity
+	 preferredDuringSchedulingIgnoredDuringExecution
+	 requiredDuringSchedulingIgnoredDuringExecution
+
