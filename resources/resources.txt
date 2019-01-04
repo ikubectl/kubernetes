@@ -1,0 +1,11 @@
+pod required resources:
+-----------------------	
+	requests:  preselect
+		cpu 500m
+		memory 5Gi
+	limits:
+		cpu
+		memory
+--------------------
+	cpu:
+		virtual cpu, a logical cpu, 1=1000 millicores
