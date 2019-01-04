@@ -46,3 +46,9 @@ kubectl create secret generic cm-adapter-serving-certs --from-file=serving.crt=.
 new config ----->github 
 		https://raw.githubusercontent.com/DirectXMan12/k8s-prometheus-adapter/master/deploy/manifests/custom-metrics-apiserver-deployment.yaml
 		
+HPA
+kubectl run myapp --image=ikubernetes/myapp:v1 --replicas=1 --requests='cpu=500m,memory=256Mi' --limits='cpu=500m,memory=256Mi' --labels='app=myapp' --expose --port=80
+kubectl autoscale deployment myapp --min=1 --max=8 --cpu-percent=60
+kubectl get hpa
+
+
