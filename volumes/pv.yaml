@@ -81,3 +81,17 @@ spec:
   accessModes: ["ReadWriteMany","ReadWriteOnce"]
   capacity:
     storage: 20Gi
+---
+apiVersion: v1
+kind: PersistentVolume
+metadata:
+  name: pv007
+  labels:
+    name: pv007
+spec:
+  nfs:
+    path: /data/volumes/v7
+    server: master
+  accessModes: ["ReadWriteMany","ReadWriteOnce"]
+  capacity:
+    storage: 20Gi

@@ -3,3 +3,46 @@ docker tag mirrorgooglecontainers/metrics-server-amd64:v0.3.1 k8s.gcr.io/metrics
 
 - /metrics-server
 - --source=kubernetes.summary_api:https://kubernetes.default?kubectlHttps=true&kubeletPort=10250&insecure=true
+
+
+prometheus
+	data change 
+
+monitoring system: software
+	prometheus server------------>client (agent: node_export,system information)
+
+	metrics url---------->pod ,all kinds of information
+	promQL restful api expression 
+	|
+	|
+	kube-state-metrics----> k8s-prometheus-adapter------k8s index data 		
+
+1.install prometheus 
+2.config
+3.adapter
+
+
+single namespace for prometheus
+	
+https://github.com/kubernetes/kubernetes/tree/master/cluster/addons
+
+alermanager ----> call 911
+
+create pv 1G
+
+gcr.io/google_containers/kube-state-metrics-amd64:v1.3.1
+
+docker pull mirrorgooglecontainers/kube-state-metrics:v1.3.1
+docker tag mirrorgooglecontainers/kube-state-metrics:v1.3.1 gcr.io/google_containers/kube-state-metrics-amd64:v1.3.1
+
+
+(umask 077;openssl genrsa -out serving.key 2048)
+openssl req -new -key serving.key -out serving.csr -subj "/CN=serving"
+openssl x509 -req -in serving.csr -CA ./ca.crt -CAkey ./ca.key -CAcreateserial -out serving.crt -days 36500
+kubectl create secret generic cm-adapter-serving-certs --from-file=serving.crt=./serving.crt --from-file=serving.key=./serving.key -n prom
+
+
+
+new config ----->github 
+		https://raw.githubusercontent.com/DirectXMan12/k8s-prometheus-adapter/master/deploy/manifests/custom-metrics-apiserver-deployment.yaml
+		

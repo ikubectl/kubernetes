@@ -2,7 +2,7 @@ apiVersion: apps/v1
 kind: Deployment
 metadata:
   name: kube-state-metrics
-  namespace: kube-system
+  namespace: custom-metrics
   labels:
     k8s-app: kube-state-metrics
     kubernetes.io/cluster-service: "true"
