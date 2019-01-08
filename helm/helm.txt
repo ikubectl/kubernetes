@@ -1,0 +1,109 @@
+helm: inventory file
+
+	chart ----> application---->modify--->template file
+
+	chart repository
+	|
+	|
+	helm----->tiller-->apiserver authentication
+	|
+	|
+	-----> deploy -->release
+	
+	auto roll or rollout
+
+https://helm.sh/
+
+chart: helm execute package ,dependence, chart repository (http server)
+release: instantiation
+
+chart ---> config(configure information) ---->release 
+
+helm (client)--------> tiller (server)(kubernetes out or in)
+
+helm: send chart and interacte tiller
+tiller: chart and config conbine release 
+
+/bin/helm ----> ~/.kube/config file 
+
+rbac: all namespaces,alone namespace must to request https://github.com/helm/helm/blob/master/docs/rbac.md
+tiller server --->user tiller ----> cluserrolebinding---->admin
+------------------------------------------------
+apiVersion: v1
+kind: ServiceAccount
+metadata:
+  name: tiller
+  namespace: kube-system
+---
+apiVersion: rbac.authorization.k8s.io/v1
+kind: ClusterRoleBinding
+metadata:
+  name: tiller
+roleRef:
+  apiGroup: rbac.authorization.k8s.io
+  kind: ClusterRole
+  name: cluster-admin
+subjects:
+  - kind: ServiceAccount
+    name: tiller
+    namespace: kube-system
+--------------------------------------------------
+helm init --service-account tiller
+####################################################
+Creating /root/.helm 
+Creating /root/.helm/repository 
+Creating /root/.helm/repository/cache 
+Creating /root/.helm/repository/local 
+Creating /root/.helm/plugins 
+Creating /root/.helm/starters 
+Creating /root/.helm/cache/archive 
+Creating /root/.helm/repository/repositories.yaml 
+Adding stable repo with URL: https://kubernetes-charts.storage.googleapis.com 
+Adding local repo with URL: http://127.0.0.1:8879/charts 
+$HELM_HOME has been configured at /root/.helm.
+
+Tiller (the Helm server-side component) has been installed into your Kubernetes Cluster.
+
+Please note: by default, Tiller is deployed with an insecure 'allow unauthenticated users' policy.
+To prevent this, run `helm init` with the --tiller-tls-verify flag.
+For more information on securing your installation see: https://docs.helm.sh/using_helm/#securing-your-helm-installation
+Happy Helming!
+######################################################
+gcr.io/kubernetes-helm/tiller:v2.12.1
+docker tag sapcc/tiller:v2.12.1 gcr.io/kubernetes-helm/tiller:v2.12.1
+https://hub.kubeapps.com/
+
+
+helm search jenkins
+helm inspect
+helm history
+helm fetch
+helm install
+helm delete
+helm rollback
+helm package chartfile
+helm verify
+
+
+.
+├── Chart.yaml
+├── OWNERS
+├── README.md
+├── templates
+│   ├── config.yaml
+│   ├── _helpers.tpl
+│   ├── home-pvc.yaml
+│   ├── jenkins-agent-svc.yaml
+│   ├── jenkins-master-deployment.yaml
+│   ├── jenkins-master-ingress.yaml
+│   ├── jenkins-master-networkpolicy.yaml
+│   ├── jenkins-master-svc.yaml
+│   ├── jenkins-test.yaml
+│   ├── jobs.yaml
+│   ├── NOTES.txt
+│   ├── rbac.yaml
+│   ├── secret.yaml
+│   ├── service-account.yaml
+│   └── test-config.yaml
+└── values.yaml
+
