@@ -1,0 +1,4 @@
+[epel]
+name=epel
+baseurl=https://mirrors.aliyun.com/epel/7Server/x86_64
+gpgcheck=0
